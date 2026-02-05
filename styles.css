@@ -1,0 +1,419 @@
+/* ===========================
+   CSS Variables
+   =========================== */
+:root {
+    /* Colors */
+    --primary-color: #4f46e5;
+    --secondary-color: #10b981;
+    --accent-color: #f59e0b;
+    --dark-bg: #1f2937;
+    --light-bg: #f3f4f6;
+    --white: #ffffff;
+    --text-dark: #111827;
+    --text-light: #6b7280;
+    --border-color: #e5e7eb;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+
+    /* Spacing */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+
+    /* Typography */
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.875rem;
+    --line-height-tight: 1.25;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.75;
+
+    /* Layout */
+    --sidebar-width: 250px;
+    --header-height: 70px;
+    --footer-height: 60px;
+    --max-width: 1200px;
+
+    /* Border Radius */
+    --radius-sm: 0.375rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-full: 9999px;
+
+    /* Transitions */
+    --transition: all 0.3s ease;
+}
+
+/* ===========================
+   Reset & Base Styles
+   =========================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-normal);
+    color: var(--text-dark);
+    background-color: var(--light-bg);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    line-height: var(--line-height-tight);
+}
+
+h1 {
+    font-size: var(--font-size-2xl);
+}
+
+h2 {
+    font-size: var(--font-size-xl);
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+a:hover {
+    opacity: 0.8;
+}
+
+button {
+    font-family: var(--font-family);
+    cursor: pointer;
+    border: none;
+    transition: var(--transition);
+}
+
+ul {
+    list-style: none;
+}
+
+/* ===========================
+   Layout Components
+   =========================== */
+.header {
+    background-color: var(--primary-color);
+    color: var(--white);
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    padding: 0 var(--spacing-xl);
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header h1 {
+    font-size: var(--font-size-2xl);
+    margin: 0;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: var(--sidebar-width) 1fr;
+    gap: var(--spacing-lg);
+    flex: 1;
+    padding: var(--spacing-lg);
+    max-width: 100%;
+}
+
+/* ===========================
+   Sidebar Styles
+   =========================== */
+.sidebar {
+    background-color: var(--white);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    box-shadow: var(--shadow);
+    height: fit-content;
+    position: sticky;
+    top: calc(var(--header-height) + var(--spacing-lg));
+}
+
+.sidebar h2 {
+    margin-bottom: var(--spacing-lg);
+    color: var(--text-dark);
+}
+
+.deck-list {
+    margin-bottom: var(--spacing-xl);
+}
+
+.deck-item {
+    margin-bottom: var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-md);
+    transition: var(--transition);
+}
+
+.deck-item:hover {
+    background-color: var(--light-bg);
+}
+
+.deck-item a {
+    display: block;
+    color: var(--text-dark);
+}
+
+.deck-item a:hover {
+    color: var(--primary-color);
+}
+
+.btn-add-deck {
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-lg);
+    background-color: var(--secondary-color);
+    color: var(--white);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: var(--font-size-base);
+}
+
+.btn-add-deck:hover {
+    background-color: #059669;
+    box-shadow: var(--shadow-lg);
+}
+
+/* ===========================
+   Main Content Styles
+   =========================== */
+.main-content {
+    background-color: var(--white);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    box-shadow: var(--shadow);
+}
+
+.cards-area h2 {
+    margin-bottom: var(--spacing-xl);
+    color: var(--text-dark);
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    margin-bottom: var(--spacing-xl);
+    perspective: 1000px;
+}
+
+.card {
+    width: 100%;
+    max-width: 600px;
+    height: 100%;
+    background-color: var(--primary-color);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: var(--shadow-lg);
+    transition: var(--transition);
+    text-align: center;
+    min-height: 300px;
+}
+
+.card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.card-front,
+.card-back {
+    width: 100%;
+}
+
+.controls {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+}
+
+.controls button {
+    padding: var(--spacing-md) var(--spacing-xl);
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: var(--font-size-base);
+    transition: var(--transition);
+}
+
+.controls button:hover {
+    background-color: #4338ca;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* ===========================
+   Footer Styles
+   =========================== */
+.footer {
+    background-color: var(--dark-bg);
+    color: var(--white);
+    text-align: center;
+    padding: var(--spacing-lg);
+    margin-top: auto;
+    font-size: var(--font-size-sm);
+}
+
+/* ===========================
+   Responsive Design
+   =========================== */
+/* Tablet (768px and below) */
+@media (max-width: 768px) {
+    :root {
+        --sidebar-width: 200px;
+        --spacing-lg: 1rem;
+    }
+
+    .container {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+        padding: var(--spacing-md);
+    }
+
+    .sidebar {
+        position: static;
+        margin-bottom: var(--spacing-md);
+    }
+
+    .header {
+        padding: 0 var(--spacing-md);
+    }
+
+    .main-content {
+        padding: var(--spacing-lg);
+    }
+
+    .card-container {
+        height: 300px;
+    }
+}
+
+/* Mobile (480px and below) */
+@media (max-width: 480px) {
+    :root {
+        --font-size-2xl: 1.5rem;
+        --font-size-xl: 1.125rem;
+        --spacing-xl: 1rem;
+        --header-height: 60px;
+    }
+
+    .header {
+        padding: 0 var(--spacing-md);
+    }
+
+    .header h1 {
+        font-size: var(--font-size-xl);
+    }
+
+    .container {
+        padding: var(--spacing-md);
+        gap: var(--spacing-md);
+    }
+
+    .sidebar {
+        padding: var(--spacing-lg);
+    }
+
+    .main-content {
+        padding: var(--spacing-lg);
+    }
+
+    .card-container {
+        height: 250px;
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .card {
+        font-size: var(--font-size-base);
+        padding: var(--spacing-lg);
+    }
+
+    .controls {
+        flex-direction: column;
+    }
+
+    .controls button {
+        width: 100%;
+        padding: var(--spacing-md) var(--spacing-lg);
+    }
+
+    .deck-item {
+        margin-bottom: var(--spacing-sm);
+    }
+}
+
+/* ===========================
+   Utility Classes
+   =========================== */
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background-color: #4338ca;
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: var(--white);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+}
+
+.btn-secondary:hover {
+    background-color: #059669;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-light {
+    color: var(--text-light);
+}
+
+.mt-lg {
+    margin-top: var(--spacing-lg);
+}
+
+.mb-lg {
+    margin-bottom: var(--spacing-lg);
+}
+
+.p-lg {
+    padding: var(--spacing-lg);
+}
