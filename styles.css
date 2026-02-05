@@ -104,6 +104,13 @@ button {
     transition: var(--transition);
 }
 
+button:focus-visible,
+a:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 2px;
+    border-radius: var(--radius-md);
+}
+
 ul {
     list-style: none;
 }
@@ -131,11 +138,13 @@ ul {
 
 .container {
     display: grid;
-    grid-template-columns: var(--sidebar-width) 1fr;
+    /* Fixed sidebar width, fluid main content */
+    grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
     gap: var(--spacing-lg);
     flex: 1;
     padding: var(--spacing-lg);
     max-width: 100%;
+    align-items: start;
 }
 
 /* ===========================
@@ -416,4 +425,177 @@ ul {
 
 .p-lg {
     padding: var(--spacing-lg);
+}
+
+/* ===========================
+   Dark Mode Support
+   =========================== */
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Dark Colors */
+        --primary-color: #6366f1;
+        --secondary-color: #34d399;
+        --accent-color: #fbbf24;
+        --dark-bg: #0f172a;
+        --light-bg: #1e293b;
+        --white: #0f172a;
+        --text-dark: #f1f5f9;
+        --text-light: #cbd5e1;
+        --border-color: #334155;
+    }
+
+    body {
+        background-color: var(--dark-bg);
+        color: var(--text-dark);
+    }
+
+    .header {
+        background-color: var(--primary-color);
+        box-shadow: var(--shadow);
+    }
+
+    .sidebar {
+        background-color: var(--light-bg);
+        color: var(--text-dark);
+        border: 1px solid var(--border-color);
+    }
+
+    .sidebar h2 {
+        color: var(--text-dark);
+    }
+
+    .deck-item:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .deck-item a {
+        color: var(--text-dark);
+    }
+
+    .deck-item a:hover {
+        color: var(--primary-color);
+    }
+
+    .btn-add-deck {
+        background-color: var(--secondary-color);
+        color: var(--dark-bg);
+    }
+
+    .btn-add-deck:hover {
+        background-color: #34d399;
+        opacity: 0.9;
+    }
+
+    .main-content {
+        background-color: var(--light-bg);
+        color: var(--text-dark);
+        border: 1px solid var(--border-color);
+    }
+
+    .cards-area h2 {
+        color: var(--text-dark);
+    }
+
+    .card {
+        background-color: var(--primary-color);
+        color: var(--white);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .card:hover {
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    }
+
+    .controls button {
+        background-color: var(--primary-color);
+        color: var(--text-dark);
+        border: 1px solid var(--border-color);
+    }
+
+    .controls button:hover {
+        background-color: var(--secondary-color);
+        color: var(--dark-bg);
+    }
+
+    .footer {
+        background-color: var(--dark-bg);
+        color: var(--text-dark);
+        border-top: 1px solid var(--border-color);
+    }
+
+    .btn-primary {
+        background-color: var(--primary-color);
+        color: var(--text-dark);
+    }
+
+    .btn-primary:hover {
+        background-color: var(--secondary-color);
+        color: var(--dark-bg);
+    }
+
+    .btn-secondary {
+        background-color: var(--secondary-color);
+        color: var(--dark-bg);
+    }
+
+    .btn-secondary:hover {
+        background-color: #34d399;
+        opacity: 0.9;
+    }
+
+    a {
+        color: var(--primary-color);
+    }
+
+    a:hover {
+        color: var(--secondary-color);
+    }
+}
+
+/* ===========================
+   Focus States for Accessibility
+   =========================== */
+.btn-add-deck:focus-visible,
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+.deck-item a:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+}
+
+.card:focus-visible {
+    outline: 3px solid var(--accent-color);
+    outline-offset: 4px;
+}
+
+.controls button:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: more) {
+    button:focus-visible,
+    a:focus-visible {
+        outline-width: 4px;
+    }
+
+    .card {
+        border: 2px solid var(--white);
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }
